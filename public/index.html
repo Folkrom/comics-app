@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="shortcut icon" href="/assets/comic-icon.png">
+    <title>Comics App</title>
+</head>
+<body onload="getComics()">
+    <h1 id="main-title">Comics App</h1>
+    <form class="Form" onsubmit="handleSubmit(event)">
+        <div>
+            <div class="divs">
+                <label for="titulo">Titulo:</label>
+                <input type="text" name="titulo" id="titulo" placeholder="Green Arrow 1" autocomplete="off"/>
+            </div>
+            <div class="divs">
+                <label for="editorial">Editorial:</label>
+                <input type="text" name="editorial" id="editorial" placeholder="DC" autocomplete="off">
+            </div>
+        </div>
+        <button id="add">Agregar Comic</button>
+    </form>
+    <p id="submit-status"></p>
+    <div class="Card">
+            <div class="Card-title">
+            <h1 class="Titulo">Titulo</h1>
+        </div>
+        <div class="Card-editorial">
+            <h1 class="Editorial">Editorial</h1>
+        </div>
+        
+    </div>
+    <div id="lista-comics">
+        <!-- <div class="Card">
+            <div class="Card-title">
+                <h1 class="Titulo" id="set-titulo">Batman</h1>
+            </div>
+            <div class="Card-editorial">
+                <h1 class="Editorial" id="set-editorial">DC</h1>
+            </div>
+
+            <div class="Card-button">
+                <button class="Card-button_delete" onclick="borrarComic()">
+                    Borrar
+                </button>
+            </div>
+        </div> -->
+    </div>
+    <!-- <ul id="lista-comics"> -->
+    </ul>
+
+    <script src="js/index.js"></script>
+    <script src="js/requests.js"></script>
+</body>
+</html>
