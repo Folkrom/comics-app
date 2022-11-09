@@ -73,6 +73,14 @@ body {
     
 }
 
+.Form button:hover {
+    background: #be95c4de;
+}
+
+.Form button:active {
+    border: 1px solid #fff;
+}
+
 #submit-status {
     text-align: center;
     font-size: 1.2rem;
@@ -90,6 +98,11 @@ body {
     border-bottom: 1px solid #333333;
 }
 
+.Header {
+    justify-content: space-around;
+    margin-bottom: 5px;
+}
+
 .Card-button button {
     background: #f5f6f7;
     padding: 0.4rem 1rem;
@@ -102,6 +115,9 @@ body {
     color: #ca0000;
 }
 
+.Card-button_delete:hover {
+    background-color: #ff7777;
+}
 
 
 

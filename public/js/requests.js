@@ -1,9 +1,7 @@
 
 // Obtener comics
 const getComics = async () => {
-  const listaComics = document.getElementById("lista-comics");
-  const setTitulo = document.getElementById("set-titulo");
-  const setEditorial = document.getElementById("set-editorial");
+  const listaComics = document.getElementById('lista-comics');
 
   let data;
   await fetch('/api/show')
@@ -15,12 +13,14 @@ const getComics = async () => {
   const { comics } = data;
 
   for (const comic in comics) {
-    const { titulo, editorial, _id: id } = comics[comic];
+    const { titulo, editorial, repetido, _id: id } = comics[comic];
+    const isRepeated = repetido ? '<p>(Repetido)</p>' : '';
 
     listaComics.innerHTML += `
           <div class="Card">
               <div class="Card-title">
                   <h1 class="Titulo" id="set-titulo">${titulo}</h1>
+                  ${isRepeated}
               </div>
               <div class="Card-editorial">
                   <h1 class="Editorial" id="set-editorial">${editorial}</h1>
@@ -73,6 +73,7 @@ const handleSubmit = async (event) => {
     if (response.msg) {
       status.innerText = response.msg;
       status.style = 'color: #fae079';
+      getComics();
       return;
     }
 
@@ -93,7 +94,7 @@ const handleSubmit = async (event) => {
 const deleteComic = ( comic ) => {
   const id = document.getElementById(`${comic}`).innerText;
 
-  fetch("/api/delete/" + id, {
+  fetch('/api/delete/' + id, {
     method: 'DELETE',
     headers: {
       Accept: 'application/json',
