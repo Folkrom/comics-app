@@ -34,7 +34,7 @@ const registrarComic = async(req, res = response) => {
     
         const comicDB = await Comic.findOne({ titulo: nuevoTitulo });
         if ( comicDB ) {
-            await Comic.findByIdAndUpdate(comicDB._id, { repetido: true }, { new: true });
+            await Comic.findByIdAndUpdate(comicDB._id, { repetido: true, estado: true }, { new: true });
             return res.status(201).json({
                 msg: `El comic '${comicDB.titulo}' ya existe, pero se marco como repetido.`,
             });
