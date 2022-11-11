@@ -1,28 +1,14 @@
 const { response } = require('express');
 const Comic = require('../models/comic');
 
+
 /**
- * It takes a request from the client, checks if the comic already exists in the database, and if it
- * doesn't, it creates a new comic in the database.
- * 
- * The problem is that the function is not working as intended.
- * 
- * The function is supposed to check if the comic already exists in the database, and if it does, it's
- * supposed to mark the comic as "repetido" (repeated) and return a message to the client.
- * 
- * However, the function is not checking if the comic already exists in the database.
- * 
- * I've tried to debug the function, but I can't find the problem.
- * 
- * I've also tried to rewrite the function, but I can't find a solution.
- * 
- * I've also tried to search for a solution, but I can't find one.
- * 
- * I've also tried to ask for help, but I
- * @param req - The request object represents the HTTP request and has properties for the request query
- * string, parameters, body, HTTP headers, and so on.
+ * "If the comic exists, mark it as a duplicate and return the comic data. If the comic doesn't exist,
+ * create it and return the comic data."
+ * </code>
+ * @param req - request
  * @param [res] - response
- * @returns The data object.
+ * @returns The comicDB object is being returned.
  */
 const registrarComic = async(req, res = response) => {
     try {
@@ -33,7 +19,7 @@ const registrarComic = async(req, res = response) => {
                                 .join(' ');
     
         const comicDB = await Comic.findOne({ titulo: nuevoTitulo });
-        if ( comicDB ) {
+        if ( comicDB.estado ) {
             await Comic.findByIdAndUpdate(comicDB._id, { repetido: true, estado: true }, { new: true });
             return res.status(201).json({
                 msg: `El comic '${comicDB.titulo}' ya existe, pero se marco como repetido.`,
@@ -45,6 +31,11 @@ const registrarComic = async(req, res = response) => {
             editorial: editorial.toUpperCase(),
             ...body
         };
+
+        if ( !comicDB.estado ) {
+            await Comic.findByIdAndUpdate(comicDB._id, { repetido: false, estado: true }, { new: true });
+            return res.status(201).json(data);
+        }
         
         const comic = new Comic( data );
     
