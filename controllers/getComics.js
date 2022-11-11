@@ -3,12 +3,18 @@ const { response } = require('express');
 const Comic = require('../models/comic');
 
 const obtenerComics = async(req, res = response) => {
+    const { limite = 10, desde = 0 } = req.body;
     const query = { estado: true };
 
     const [ total, comics ] = await Promise.all([
         Comic.countDocuments( query ),
-        Comic.find( query ).sort({ _id: -1 })
+        Comic.find( query )
+            .sort({ _id: -1 })
+            .skip( Number(desde) )
+            .limit( Number(limite) )
     ]);
+    // const total = await Comic.countDocuments(query);
+    // const comics = await Comic.find(query).limit(5);
 
     res.json({
         total,
