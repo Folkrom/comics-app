@@ -1,6 +1,7 @@
 
 // Obtener comics
 const getComics = async () => {
+  const totalComics = document.getElementById('total-comics');
   const listaComics = document.getElementById('lista-comics');
 
   let data;
@@ -10,7 +11,9 @@ const getComics = async () => {
     .catch((e) => console.log(e));
 
   listaComics.innerHTML = ``;
-  const { comics } = data;
+  const { total, comics } = data;
+
+  totalComics.innerText = `Total de comics registrados: ${total}`;
 
   for (const comic in comics) {
     const { titulo, editorial, repetido, _id: id } = comics[comic];
@@ -72,12 +75,12 @@ const handleSubmit = async (event) => {
 
     if (response.msg) {
       status.innerText = response.msg;
-      status.style = 'color: #fae079';
+      status.style = 'color: #FAE079';
       getComics();
       return;
     }
 
-    status.innerText = `El comic: ${titulo} (${editorial}) ha sido agregado correctamente!`;
+    status.innerText = `El comic: ${titulo} (${editorial}) ha sido agregado correctamente.`;
     status.style = 'color: #039548';
     titulo.value = '';
     editorial.value = '';
@@ -86,8 +89,8 @@ const handleSubmit = async (event) => {
     
   } catch (error) {
     console.info(error);
-    status.innerText = 'Ha ocurrido un error al registrar el comic';
-    status.style = 'color: #ef233c';
+    status.innerText = 'Ha ocurrido un error al registrar el comic.';
+    status.style = 'color: #EF233C';
   } 
 };
 
