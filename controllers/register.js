@@ -1,4 +1,4 @@
-const { response } = require('express');
+const { response, query } = require('express');
 const Comic = require('../models/comic');
 
 
@@ -19,10 +19,20 @@ const registrarComic = async(req, res = response) => {
                                 .join(' ');
     
         const comicDB = await Comic.findOne({ titulo: nuevoTitulo });
-        if ( comicDB.estado ) {
-            await Comic.findByIdAndUpdate(comicDB._id, { repetido: true, estado: true }, { new: true });
+        
+        if (comicDB) {
+            const actualizacion = {
+                repetido: true,
+                estado: true
+            };
+            let mensaje = `El comic '${comicDB.titulo}' ya existe, pero se marco como repetido.`;
+            if (!comicDB.estado) {
+                actualizacion.repetido = false;
+                mensaje = `El comic '${comicDB.titulo}' fue encontrado, pero estaba inactivo. Ahora se ha activado.`;
+            }
+            await Comic.findByIdAndUpdate(comicDB._id, actualizacion, { new: true });
             return res.status(201).json({
-                msg: `El comic '${comicDB.titulo}' ya existe, pero se marco como repetido.`,
+                msg: mensaje,
             });
         }
     
@@ -31,11 +41,6 @@ const registrarComic = async(req, res = response) => {
             editorial: editorial.toUpperCase(),
             ...body
         };
-
-        if ( !comicDB.estado ) {
-            await Comic.findByIdAndUpdate(comicDB._id, { repetido: false, estado: true }, { new: true });
-            return res.status(201).json(data);
-        }
         
         const comic = new Comic( data );
     
@@ -44,23 +49,29 @@ const registrarComic = async(req, res = response) => {
     
         res.status(201).json(data);
     } catch (error) {
-        res.status(409).json({ msg: 'Ha ocurrido un error, revisa los datos' })
+        res.status(409).json({ msg: 'Ha ocurrido un error, revisa los datos' });
+        console.log(error);
     }
 }
 
 /**
- * It takes the id of a comic, finds it in the database, and sets its estado property to false.
+ * This function deletes a comic from the database and updates its status based on whether it is a
+ * duplicate or not.
  * @param req - The request object represents the HTTP request and has properties for the request query
  * string, parameters, body, HTTP headers, and so on.
  * @param res - The response object.
  */
 const borrarComic = async(req, res) => {
     const { id } = req.params; 
-    const item = await Comic.findByIdAndUpdate( id, { estado: false }, { new: true } );
-
+    const comicDB = await Comic.findOne({ _id: id });
+    const params = comicDB.repetido 
+                    ? { estado: true, repetido: false } 
+                    : { estado: false } ;
+    const deletedComic = await Comic.findByIdAndUpdate( id, params , { new: true } );
+    
     res.status(200).json({
         msg: 'Comic borrado',
-        item
+        deletedComic
     });
 }
 

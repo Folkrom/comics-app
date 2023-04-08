@@ -3,7 +3,7 @@ const { response } = require('express');
 const Comic = require('../models/comic');
 
 const obtenerComics = async(req, res = response) => {
-    const { limite = 10, desde = 0 } = req.body;
+    const { limite = 50, desde = 0 } = req.body;
     const query = { estado: true };
 
     const [ total, comics ] = await Promise.all([
