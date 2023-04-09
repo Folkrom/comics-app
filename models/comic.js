@@ -4,7 +4,7 @@ const ComicSchema = Schema({
     titulo: {
         type: String,
         required: [true, 'El titulo es obligatorio'],
-        unique: true
+        unique: false
     },
     editorial: {
         type: String,

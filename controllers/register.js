@@ -17,8 +17,9 @@ const registrarComic = async(req, res = response) => {
         const nuevoTitulo = titulo.split(' ')
                                 .map( palabra => palabra[0].toUpperCase() + palabra.substring(1))
                                 .join(' ');
+        const nuevaEditorial = editorial.toUpperCase();
     
-        const comicDB = await Comic.findOne({ titulo: nuevoTitulo });
+        const comicDB = await Comic.findOne({ titulo: nuevoTitulo, editorial: nuevaEditorial });
         
         if (comicDB) {
             const actualizacion = {
@@ -38,7 +39,7 @@ const registrarComic = async(req, res = response) => {
     
         const data = {
             titulo: nuevoTitulo,
-            editorial: editorial.toUpperCase(),
+            editorial: nuevaEditorial,
             ...body
         };
         

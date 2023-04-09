@@ -94,20 +94,22 @@ const handleSubmit = async (event) => {
   } 
 };
 
-const deleteComic = ( comic ) => {
+const deleteComic = async (comic) => {
   const id = document.getElementById(`${comic}`).innerText;
 
-  fetch('/api/delete/' + id, {
-    method: 'DELETE',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-  })
-  .then( res => { 
-    res.json();
+  try {
+    await fetch(`/api/delete/${id}`, {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+    
+    // await response.json();
     getComics();
-  } )
-  .catch( e => console.info(e) );
+  } catch (e) {
+    console.info(e);
+  }
+};
 
-}
