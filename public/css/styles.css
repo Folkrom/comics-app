@@ -1,136 +1,196 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Nunito', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color: #fff;
-    background: #231942;
+  font-family: 'Nunito', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #fff;
+  background: #231942;
 }
 
 #main-title {
-    font-size: 3rem;
-    text-align: center;
+  font-size: 3rem;
+  text-align: center;
+  margin: 2rem 0;
 }
- 
+
 .Form {
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    background: #5e548e;
-    margin-bottom: 1rem;
-    max-width: 75%;
-    border-radius: 7px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #5e548e;
+  margin-bottom: 1rem;
+  max-width: 75%;
+  border-radius: 7px;
 }
- 
+
 .Form > div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.5rem;
 }
 
 .Form .divs {
-    width: 20rem;
+  width: 100%;
+  max-width: 20rem;
 }
 
 .Form .rep {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
- 
+
 .Form input {
-    width: 17rem;
-    background: #f5f6f7;
-    padding: 0.5rem 1rem;
-    border: 1px solid #9f86c0;
-    border-radius: 10px;
-    display: block;
-    margin: 0.3rem 0 0 0;
+  width: 100%;
+  max-width: 17rem;
+  background: #f5f6f7;
+  padding: 0.5rem 1rem;
+  border: 1px solid #9f86c0;
+  border-radius: 10px;
+  display: block;
+  margin: 0.3rem 0 0 0;
 }
 
 .Form input[type=checkbox] {
-    width: 1rem;
+  width: 1rem;
 }
- 
+
 .Form button {
-    background: #be95c4;
-    color: #fff;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    border: none;
-    display: block;
-    width: 16rem;
-    height: 4rem;
-    
+  background: #be95c4;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border: none;
+  display: block;
+  width: 100%;
+  max-width: 16rem;
+  height: 4rem;
 }
 
 .Form button:hover {
-    background: #be95c4de;
+  background: #be95c4de;
 }
 
 .Form button:active {
-    border: 1px solid #fff;
+  border: 1px solid #fff;
 }
 
 #submit-status {
-    text-align: center;
-    font-size: 1.2rem;
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 1rem;
 }
 
 #total-comics {
-    margin-left: 13%;
+  margin-left: 13%;
 }
 
 .Card {
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #5e548a;
-    border-radius: 7px;
-    max-width: 75%;
-    padding: 0.5rem 1rem;
-    border-bottom: 1px solid #333333;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  background: #5e548a;
+  border-radius: 7px;
+  max-width: 75%;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid #333333;
 }
 
 .Header {
-    justify-content: space-around;
-    margin-bottom: 5px;
+  justify-content: space-around;
+  margin-bottom: 5px;
 }
 
 .Card-button button {
-    background: #f5f6f7;
-    padding: 0.4rem 1rem;
-    border-radius: 20px;
-    cursor: pointer;
+  background: #f5f6f7;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
 }
 
 .Card-button_delete {
-    border: 1px solid #ca0000;
-    color: #ca0000;
+  border: 1px solid #ca0000;
+  color: #ca0000;
 }
 
 .Card-button_delete:hover {
-    background-color: #ff7777;
+  background-color: #ff7777;
 }
 
-
-
-
 .line-through {
-    text-decoration: line-through;
-    color: #777 !important;
+  text-decoration: line-through;
+  color: #777 !important;
 }
 
 .hide-button {
-    display: none;
+  display: none;
 }
+
+@media (max-width: 768px) {
+    .Form {
+      flex-wrap: wrap;
+      justify-content: center;
+      text-align: center;
+    }
+  
+    .Form > div {
+      width: 100%;
+    }
+  
+    .Form .divs {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+  
+    .Form input {
+      width: 80%;
+      margin: 0.3rem auto;
+    }
+  
+    .Form button {
+      width: 80%;
+    }
+  
+    #total-comics {
+      margin-left: 0;
+    }
+  
+    .Card {
+      flex-wrap: wrap;
+      text-align: center;
+    }
+  
+    .Card > div {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+  
+    .Header {
+      flex-wrap: wrap;
+      text-align: center;
+      margin-bottom: 5px;
+    }
+  
+    .Card-button {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  
+    .Card-button button {
+      margin: 0.3rem;
+    }
+  }
+  
