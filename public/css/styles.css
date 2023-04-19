@@ -21,70 +21,72 @@ body {
 }
 
 .Form {
-  margin: auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  background: #5e548e;
-  margin-bottom: 1rem;
-  max-width: 75%;
-  border-radius: 7px;
-}
-
-.Form > div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 0.5rem;
-}
-
-.Form .divs {
-  width: 100%;
-  max-width: 20rem;
-}
-
-.Form .rep {
-  margin-bottom: 1rem;
-}
-
-.Form input {
-  width: 100%;
-  max-width: 17rem;
-  background: #f5f6f7;
-  padding: 0.5rem 1rem;
-  border: 1px solid #9f86c0;
-  border-radius: 10px;
-  display: block;
-  margin: 0.3rem 0 0 0;
-}
-
-.Form input[type=checkbox] {
-  width: 1rem;
-}
-
-.Form button {
-  background: #be95c4;
-  color: #fff;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-size: 1.2rem;
-  cursor: pointer;
-  border: none;
-  display: block;
-  width: 100%;
-  max-width: 16rem;
-  height: 4rem;
-}
-
-.Form button:hover {
-  background: #be95c4de;
-}
-
-.Form button:active {
-  border: 1px solid #fff;
-}
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: #5e548e;
+    margin-bottom: 1rem;
+    max-width: 75%;
+    border-radius: 7px;
+  }
+  
+  .Form > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    flex: 1;
+    margin-right: 1rem;
+  }
+  
+  .Form .divs {
+    width: 100%;
+    max-width: 20rem;
+  }
+  
+  .Form .rep {
+    margin-bottom: 1rem;
+  }
+  
+  .Form input {
+    width: 100%;
+    max-width: 17rem;
+    background: #f5f6f7;
+    padding: 0.5rem 1rem;
+    border: 1px solid #9f86c0;
+    border-radius: 10px;
+    display: block;
+    margin: 0.3rem 0 0 0;
+  }
+  
+  .Form input[type=checkbox] {
+    width: 1rem;
+  }
+  
+  .Form button {
+    background: #be95c4;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border: none;
+    display: block;
+    width: 100%;
+    max-width: 16rem;
+    height: 4rem;
+  }
+  
+  .Form button:hover {
+    background: #be95c4de;
+  }
+  
+  .Form button:active {
+    border: 1px solid #fff;
+  }  
 
 #submit-status {
   text-align: center;
